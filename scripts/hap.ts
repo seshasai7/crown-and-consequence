@@ -1,0 +1,10 @@
+import { createWorld, startGame, advanceDays } from '../src/sim/engine';
+import { popTotal } from '../src/sim/util';
+const s = createWorld(1234, 'normal', 11);
+startGame(s, 0);
+advanceDays(s, 720);
+const k = s.kingdoms[9];
+const p = s.provinces.find(p=>p.owner===9)!;
+console.log(p.last.happinessFactors, p.happiness, p.pop, popTotal(p.pop));
+console.log(k.taxes, k.budget, k.aiPlan, s.armies.filter(a=>a.owner===9).map(a=>[a.units,a.status]));
+console.log(k.history.at(-1)!.lines);
